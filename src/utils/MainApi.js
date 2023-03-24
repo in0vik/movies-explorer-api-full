@@ -14,7 +14,8 @@ const register = (email, password, name) => {
       password,
       name,
     }),
-  }).then((response) => checkResponse(response));
+  })
+    .then((response) => checkResponse(response))
 };
 
 const authorize = (email, password) => {
@@ -28,7 +29,8 @@ const authorize = (email, password) => {
       email,
       password,
     }),
-  }).then((response) => checkResponse(response));
+  })
+    .then((response) => checkResponse(response))
 };
 
 const getUserInfo = () => {
@@ -37,7 +39,7 @@ const getUserInfo = () => {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
   }).then((response) => checkResponse(response));
 };
@@ -59,7 +61,7 @@ const setUserInfo = (data) => {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
     body: JSON.stringify({
       name: data.name,
@@ -74,17 +76,18 @@ const getMovies = () => {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
   }).then((response) => checkResponse(response));
 };
 
 const postMovie = (data) => {
+  console.log('vooooot', data);
   return fetch(`${BASE_URL}/movies`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
     body: JSON.stringify({
       country: data.country,
@@ -92,28 +95,32 @@ const postMovie = (data) => {
       duration: data.duration,
       year: data.year,
       description: data.description,
-      image: `https://api.nomoreparties.co/beatfilm-movies${data.image.previewUrl}`,
-      trailer: data.trailer,
-      thumbnail: data.thumbnail,
-      movieId: data.movieId,
+      image: `https://api.nomoreparties.co/${data.image.url}`,
+      trailerLink: data.trailerLink,
+      thumbnail: `https://api.nomoreparties.co/${data.image.previewUrl.split(' ')[data.id - 1]}`,
+      movieId: data.id.toString(),
       nameRU: data.nameRU,
       nameEN: data.nameEN,
     }),
-  }).then((response) => checkResponse(response));
+  })
+    .then((response) => checkResponse(response))
+    .catch((err) => console.log(err));
 };
 
 const deleteMovie = (id) => {
+  console.log('api', id);
   return fetch(`${BASE_URL}/movies/${id}`, {
     method: 'DELETE',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
     },
   }).then((response) => checkResponse(response));
-}
+};
 
-export { BASE_URL,
+export {
+  BASE_URL,
   register,
   authorize,
   getUserInfo,
@@ -122,4 +129,4 @@ export { BASE_URL,
   getMovies,
   postMovie,
   deleteMovie,
- };
+};

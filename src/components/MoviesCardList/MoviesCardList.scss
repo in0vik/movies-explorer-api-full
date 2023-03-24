@@ -40,3 +40,12 @@
      
    }
 }
+
+.movies-card-list__not-found {
+  margin: 0;
+  padding: 0;
+  color: #A0A0A0;
+  @media screen and (min-width: $max-width-tablet) {
+    margin-top: 160px; 
+   }
+}

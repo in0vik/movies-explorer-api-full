@@ -75,7 +75,13 @@
   font-size: 14px;
   line-height: 17px;
   color: #fff;
-  margin-top: 180px;
+  
+}
+
+.register__form-button_disabled {
+  background-color: #F8F8F8;
+  pointer-events: none;
+  color: #A0A0A0;
 }
 
 .register__text {
@@ -97,9 +103,24 @@
 }
 
 .register__input-error {
+  min-height: 12px;
   color: #EE3465;
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
   margin: 6px 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.register__request-error {
+  min-height: 17px;
+  text-align: center;
+  color: #EE3465;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  margin-top: 150px;
+  margin-bottom: 16px;
 }

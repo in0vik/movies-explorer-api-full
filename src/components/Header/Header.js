@@ -3,9 +3,9 @@ import './Header.scss';
 import logo from '../../images/logo.svg';
 import { Link } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
+import { NavLink } from 'react-router-dom';
 
-function Header() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false); //temp
+function Header({ isLoggedIn }) {
 
   return (
     <>
@@ -34,21 +34,23 @@ function Header() {
           <Link className="header__logo" to="/">
             <img src={logo} alt="logo" />
           </Link>
-
-          <Navigation />
+          <Navigation/>
           <nav className="header__navigation">
             <ul className="header__navigation-list header__navigation-list_type_profile">
               <li className="header__navigation-item">
-                <Link
-                  className="link header__navigation-link header__navigation-link_active"
+                <NavLink
+                  className={({ isActive }) => isActive ? 'link header__navigation-link header__navigation-link_active' : 'link header__navigation-link'} 
                   to="/movies">
                   Films
-                </Link>
+                </NavLink>
               </li>
               <li className="header__navigation-item">
-                <Link className="link header__navigation-link" to="/saved-movies">
+                <NavLink
+                  className={({ isActive }) => isActive ? 'link header__navigation-link header__navigation-link_active' : 'link header__navigation-link'}
+                  to="/saved-movies"
+                  >
                   Saved films
-                </Link>
+                </NavLink>
               </li>
             </ul>
 

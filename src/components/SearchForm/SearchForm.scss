@@ -1,6 +1,7 @@
 @import "../../styles/variables.scss";
 
 .search-form {
+  margin: 70px 0;
   @media screen and (max-width: $max-width-tablet) {
     margin: 70px 0 120px 0;
   }
@@ -52,6 +53,10 @@
   font-size: 18px;
   line-height: 20px;
   color: #A0A0A0;
+}
+
+.search-form__input-error::placeholder {
+  color: #EE3465;
 }
 
 .search-form__button {
