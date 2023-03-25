@@ -27,6 +27,7 @@ Start the server with hot-reload: `npm run dev`
 + [Web Developer Diploma Criteria](https://code.s3.yandex.net/web-developer/static/new-program/web-diploma-criteria-2.0/checklist_jsx_diplom.pdf)
 
 ## Links:
++ [Website](https://does.nomoredomains.work/)
 + [Layout](https://disk.yandex.ru/d/pPOyhvuSlhTXXg)
-+ [Website](https://in0vik.github.io/movies-explorer-frontend/)
 + [Backend repository](https://github.com/in0vik/movies-explorer-api)
++ [Backend path](https://does.nomoredomains.work/api)
