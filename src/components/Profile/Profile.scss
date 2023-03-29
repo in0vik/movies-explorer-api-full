@@ -52,7 +52,7 @@
 
 .profile__info-item-input {
   border: 0;
-  direction: rtl;
+  text-align: right;
   width: 85%;
   margin: 0;
   font-weight: 400;
@@ -108,7 +108,6 @@
 .profile__request-answer {
   min-height: 13px;
   text-align: center;
-  
   font-weight: 400;
   font-size: 11px;
   line-height: 13px;
