@@ -123,7 +123,6 @@ function App() {
       })
       .finally(() => {
         setIsLoading(false);
-        console.log(data);
       });
   }
 

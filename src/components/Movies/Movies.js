@@ -42,7 +42,6 @@ function Movies({ onSaveFilm, onDeleteFilm, savedMovies }) {
       ? filterByDuration(filterMovies(allMovies, query))
       : filterMovies(movies, query);
     setFiltredMovies(filtredMoviesData);
-    console.log(filtredMoviesData);
     localStorage.setItem('filtredMovies', JSON.stringify(filtredMoviesData));
   }
 
