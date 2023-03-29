@@ -14,8 +14,7 @@ const register = (email, password, name) => {
       password,
       name,
     }),
-  })
-    .then((response) => checkResponse(response))
+  }).then((response) => checkResponse(response));
 };
 
 const authorize = (email, password) => {
@@ -29,8 +28,7 @@ const authorize = (email, password) => {
       email,
       password,
     }),
-  })
-    .then((response) => checkResponse(response))
+  }).then((response) => checkResponse(response));
 };
 
 const getUserInfo = () => {
@@ -108,7 +106,6 @@ const postMovie = (data) => {
 };
 
 const deleteMovie = (id) => {
-  console.log('api', id);
   return fetch(`${BASE_URL}/movies/${id}`, {
     method: 'DELETE',
     headers: {

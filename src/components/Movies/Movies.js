@@ -62,6 +62,7 @@ function Movies({ onSaveFilm, onDeleteFilm, savedMovies }) {
           localStorage.setItem('allMovies', JSON.stringify(movies));
           setIsRequestErr(false);
           setAllMovies(movies);
+          onFilterMovies(movies, query, isShortMovies);
         })
         .catch((error) => {
           setIsRequestErr(true);

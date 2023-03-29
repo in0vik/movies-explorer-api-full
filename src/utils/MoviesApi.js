@@ -1,4 +1,4 @@
-import { checkResponse } from "./utils";
+import { checkResponse } from './utils';
 
 const BASE_URL = 'https://api.nomoreparties.co/beatfilm-movies';
 
@@ -11,6 +11,4 @@ function getMovies() {
   }).then((response) => checkResponse(response));
 }
 
-export {
-  getMovies,
-}
+export { getMovies };
