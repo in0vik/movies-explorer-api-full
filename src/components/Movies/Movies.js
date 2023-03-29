@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './Movies.scss';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
@@ -14,15 +14,20 @@ function Movies({ onSaveFilm, onDeleteFilm, savedMovies }) {
   const [isRequestErr, setIsRequestErr] = React.useState(false);
   const [isNotFound, setIsNotFound] = React.useState(false);
   const [searchQeury, setSearchQeury] = React.useState('');
+  const [initialMovies, setInitialMovies] = React.useState([]);
 
   useEffect(() => {
-    setFiltredMovies(
-      isShortMovies
-        ? filterByDuration(filterMovies(allMovies, searchQeury))
-        : filterMovies(allMovies, searchQeury)
-    );
-    
-  }, [allMovies, isShortMovies, searchQeury]);
+    if (localStorage.getItem('filtredMovies')) {
+      setFiltredMovies(JSON.parse(localStorage.getItem('filtredMovies')));
+    } 
+    if (localStorage.getItem('query')) {
+      setSearchQeury(localStorage.getItem('query'));
+    } 
+    if (localStorage.getItem('isShort')) {
+      setIsShortMovies(JSON.parse(localStorage.getItem('isShort')));
+    } 
+  }, [])
+
 
   useEffect(() => {
     if (filtredMovies.length === 0 && searchQeury) {
@@ -30,28 +35,46 @@ function Movies({ onSaveFilm, onDeleteFilm, savedMovies }) {
     } else {
       setIsNotFound(false);
     }
-  }, [filtredMovies.length, searchQeury])
+  }, [filtredMovies.length, searchQeury]);
 
-  function onFilterMovies() {
+  function onFilterMovies(movies, query, short) {
+    const filtredMoviesData = short
+      ? filterByDuration(filterMovies(allMovies, query))
+      : filterMovies(movies, query);
+    setFiltredMovies(filtredMoviesData);
+    console.log(filtredMoviesData);
+    localStorage.setItem('filtredMovies', JSON.stringify(filtredMoviesData));
+  }
+
+  function onShortFilterMovies() {
     setIsShortMovies(!isShortMovies);
+    localStorage.setItem('isShort', !isShortMovies);
+    onFilterMovies(allMovies, searchQeury, !isShortMovies);
   }
 
   function onSearchMovies(query) {
     setIsLoading(true);
     setSearchQeury(query);
-    moviesApi
-      .getMovies(query)
-      .then((movies) => {
-        setIsRequestErr(false);
-        setAllMovies(movies);
-      })
-      .catch((error) => {
-        setIsRequestErr(true);
-        console.log(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    localStorage.setItem('query', query);
+    if (!localStorage.getItem('allMovies')) {
+      moviesApi
+        .getMovies(query)
+        .then((movies) => {
+          localStorage.setItem('allMovies', JSON.stringify(movies));
+          setIsRequestErr(false);
+          setAllMovies(movies);
+        })
+        .catch((error) => {
+          setIsRequestErr(true);
+          console.log(error);
+        });
+    } else if (allMovies.length === 0) {
+      setIsRequestErr(false);
+      setAllMovies(JSON.parse(localStorage.getItem('allMovies')));
+    }
+    localStorage.setItem('filtredMovies', JSON.stringify(filtredMovies));
+    setIsLoading(false);
+    onFilterMovies(allMovies, query, isShortMovies);
   }
 
   return (
@@ -59,7 +82,9 @@ function Movies({ onSaveFilm, onDeleteFilm, savedMovies }) {
       <SearchForm
         onSearchMovies={onSearchMovies}
         isShortMovies={isShortMovies}
-        onFilter={onFilterMovies}
+        onFilter={onShortFilterMovies}
+        query={searchQeury}
+        setQuery={setSearchQeury}
       />
       {isRequestErr ? (
         <MoviesRequestError />

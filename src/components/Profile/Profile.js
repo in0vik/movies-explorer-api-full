@@ -1,17 +1,19 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { useFormWithValidation } from '../../utils/utils';
 import './Profile.scss';
 
-function Profile({ isLoading, onLogout, onSubmit, isRequestErr }) {
-  const { values, handleChange, isValid } = useFormWithValidation();
+function Profile({ isLoading, onLogout, onSubmit, isRequestErr, isProfileUpdateSuccess }) {
+  const { values, handleChange, isValid, resetForm } = useFormWithValidation();
   const [isEditMode, setIsEditMode] = useState(false);
+  const [isLastValues, setIsLastValues] = useState(false);
   const currentUser = useContext(CurrentUserContext);
+
   function handleSubmit(e) {
     e.preventDefault();
     onSubmit({
-      name: values.name ? values.name : currentUser.name,
-      email: values.email ? values.email : currentUser.email,
+      name: values.name,
+      email: values.email,
     });
     setIsEditMode(!isEditMode);
   }
@@ -21,14 +23,17 @@ function Profile({ isLoading, onLogout, onSubmit, isRequestErr }) {
     setIsEditMode(!isEditMode);
   }
 
+  useEffect(() => {
+    resetForm(currentUser);
+  }, [currentUser, resetForm]);
 
-  // useEffect(() => {
-  //   if (isRequestErr) {
-  //     console.log('errrrrrr');
-  //     values.name = currentUser.name;
-  //     values.email = currentUser.email;
-  //   }
-  // }, [isRequestErr])
+  useEffect(() => {
+    if (currentUser.name === values.name && currentUser.email === values.email) {
+      setIsLastValues(true);
+    } else {
+      setIsLastValues(false);
+    }
+  }, [values.name, values.email]);
 
   return (
     <section className="profile">
@@ -38,7 +43,7 @@ function Profile({ isLoading, onLogout, onSubmit, isRequestErr }) {
           <div className="profile__info-item">
             <label className="profile__info-item-title">Name</label>
             <input
-              readOnly={!isEditMode}
+              readOnly={!isEditMode || isLoading}
               className="profile__info-item-input"
               type="text"
               name="name"
@@ -46,12 +51,12 @@ function Profile({ isLoading, onLogout, onSubmit, isRequestErr }) {
               required
               minLength="4"
               maxLength="320"
-              value={values.name || currentUser.name || ''}></input>
+              value={values.name || ''}></input>
           </div>
           <div className="profile__info-item">
             <label className="profile__info-item-title">E-mail</label>
             <input
-              readOnly={!isEditMode}
+              readOnly={!isEditMode || isLoading}
               className="profile__info-item-input"
               type="email"
               name="email"
@@ -60,20 +65,25 @@ function Profile({ isLoading, onLogout, onSubmit, isRequestErr }) {
               minLength="4"
               maxLength="320"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-              value={values.email || currentUser.email || ''}></input>
+              value={values.email || ''}></input>
           </div>
         </fieldset>
         {isEditMode ? (
           <button
             className={`link button profile__edit-submit-button ${
-              isValid ? '' : 'profile__edit-submit-button_disabled'
+              !isValid || isLastValues || isLoading ? 'profile__edit-submit-button_disabled' : ''
             }`}
-            disabled={!isValid}>
+            disabled={!isValid || isLastValues || isLoading}>
             Save
           </button>
         ) : (
           <>
-            <div className="profile__request-error">{isRequestErr ? 'Request error' : ''}</div>
+            <div
+              className={`profile__request-answer ${isRequestErr && 'profile__request-error'} ${
+                isProfileUpdateSuccess && 'profile__request-success'
+              } `}>
+              {isRequestErr && 'Request error'}{isProfileUpdateSuccess && 'Profile updated'}
+            </div>
             <button
               className={`link button profile__edit-button ${
                 isValid ? '' : 'profile__edit-button_disabled'

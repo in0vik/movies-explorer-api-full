@@ -17,52 +17,54 @@ function Login({ isLoading, onAuth, isRequestErr, setIsRequestErr }) {
 
   return (
     <section className="login">
-      <img className="login__logo" src={logo} alt="Logo" />
+      <Link className="login__logo-link" to="/">
+        <img className="login__logo" src={logo} alt="Logo" />
+      </Link>
       <h2 className="login__title">Good to see you!</h2>
       <form className="login__form" onSubmit={handleSubmit} noValidate>
-        <div className="login__form-item">
-          <label className="login__form-label">E-mail</label>
-          <input
-            className="login__form-input"
-            type="email"
-            name="email"
-            onChange={handleChange}
-            required
-            minLength="4"
-            maxLength="320"
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
-            value={values.email || ''}
-          />
-          <span className="login__input-error">{errors.email}</span>
-        </div>
-        <div className="login__form-item">
-          <label className="login__form-label">Password</label>
-          <input
-            className="login__form-input"
-            onChange={handleChange}
-            type="password"
-            name="password"
-            required
-            minLength="2"
-            maxLength="320"
-            value={values.password || ''}
-          />
-          <span className="login__input-error">{errors.password}</span>
-        </div>
-        <div className="login__request-error">
-          {isRequestErr ? 'Request error' : ''}
-        </div>
-        <button
-          className={`button login__form-button ${!isValid && 'login__form-button_disabled'}`}
-          disabled={!isValid}>
-          Login
-        </button>
-        <p className="login__text">
-          Not registered yet?{' '}
-          <Link className="link login__registration-link" to="/signup">
-            Registration
-          </Link>
-        </p>
+        <fieldset className="login__form-fieldset" disabled={isLoading}>
+          <div className="login__form-item">
+            <label className="login__form-label">E-mail</label>
+            <input
+              className="login__form-input"
+              type="email"
+              name="email"
+              onChange={handleChange}
+              required
+              minLength="4"
+              maxLength="320"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              value={values.email || ''}
+            />
+            <span className="login__input-error">{errors.email}</span>
+          </div>
+          <div className="login__form-item">
+            <label className="login__form-label">Password</label>
+            <input
+              className="login__form-input"
+              onChange={handleChange}
+              type="password"
+              name="password"
+              required
+              minLength="2"
+              maxLength="320"
+              value={values.password || ''}
+            />
+            <span className="login__input-error">{errors.password}</span>
+          </div>
+          <div className="login__request-error">{isRequestErr ? 'Request error' : ''}</div>
+          <button
+            className={`button login__form-button ${!isValid || isLoading && 'login__form-button_disabled'}`}
+            disabled={!isValid}>
+            Login
+          </button>
+          <p className="login__text">
+            Not registered yet?{' '}
+            <Link className="link login__registration-link" to="/signup">
+              Registration
+            </Link>
+          </p>
+        </fieldset>
       </form>
     </section>
   );

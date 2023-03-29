@@ -3,7 +3,6 @@ import './Navigation.scss';
 import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
-
 function Navigation() {
   const [isBurgerOpened, setIsBurgerOpened] = useState(false);
   function handleBurgerSwitch() {
@@ -11,7 +10,14 @@ function Navigation() {
   }
   return (
     <div className="navigation">
-      <input id="menu-button" className="navigation__menu-toggle" type="checkbox" checked={isBurgerOpened} readOnly onClick={handleBurgerSwitch}/>
+      <input
+        id="menu-button"
+        className="navigation__menu-toggle"
+        type="checkbox"
+        checked={isBurgerOpened}
+        readOnly
+        onClick={handleBurgerSwitch}
+      />
       <label className="navigation__menu-button" onClick={handleBurgerSwitch}>
         <span className="navigation__menu-elements"></span>
       </label>

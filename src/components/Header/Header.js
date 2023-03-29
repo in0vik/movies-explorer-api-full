@@ -6,7 +6,6 @@ import Navigation from '../Navigation/Navigation';
 import { NavLink } from 'react-router-dom';
 
 function Header({ isLoggedIn }) {
-
   return (
     <>
       {!isLoggedIn ? (
@@ -34,21 +33,28 @@ function Header({ isLoggedIn }) {
           <Link className="header__logo" to="/">
             <img src={logo} alt="logo" />
           </Link>
-          <Navigation/>
+          <Navigation />
           <nav className="header__navigation">
             <ul className="header__navigation-list header__navigation-list_type_profile">
               <li className="header__navigation-item">
                 <NavLink
-                  className={({ isActive }) => isActive ? 'link header__navigation-link header__navigation-link_active' : 'link header__navigation-link'} 
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'link header__navigation-link header__navigation-link_active'
+                      : 'link header__navigation-link'
+                  }
                   to="/movies">
                   Films
                 </NavLink>
               </li>
               <li className="header__navigation-item">
                 <NavLink
-                  className={({ isActive }) => isActive ? 'link header__navigation-link header__navigation-link_active' : 'link header__navigation-link'}
-                  to="/saved-movies"
-                  >
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'link header__navigation-link header__navigation-link_active'
+                      : 'link header__navigation-link'
+                  }
+                  to="/saved-movies">
                   Saved films
                 </NavLink>
               </li>

@@ -2,12 +2,24 @@ import React from 'react';
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox';
 import './SearchForm.scss';
 
-function SearchForm({ onSearchMovies, isShortMovies, onFilter, isSavedFilms }) {
-  const [query, setQuery] = React.useState('');
+function SearchForm({ onSearchMovies, isShortMovies, onFilter, isSavedFilms, query, setQuery }) {
   const [isQueryEmpty, setIsQueryEmpty] = React.useState(false);
   function handleChangeQuery(e) {
-    setIsQueryEmpty(false);
-    setQuery(e.target.value);
+    onSearchMovies(e.target.value);
+    // setIsQueryEmpty(false);
+    // setQuery(e.target.value);
+    // if (isSavedFilms) {
+    //   onSearchMovies(e.target.value);
+    // }
+    // if (query.trim().length === 0) {
+    //   setIsQueryEmpty(true);
+    //   if (isShortMovies) {
+    //     onSearchMovies(e.target.value);
+    //   }
+    // } else {
+    //   setIsQueryEmpty(false);
+    //   onSearchMovies(e.target.value);
+    // }
   }
 
   function handleSubmit(e) {
@@ -31,8 +43,11 @@ function SearchForm({ onSearchMovies, isShortMovies, onFilter, isSavedFilms }) {
       <section className="search-form">
         <form className="search-form__form" onSubmit={handleSubmit} noValidate>
           <input
-            className={`search-form__input ${isQueryEmpty && !isSavedFilms && !isShortMovies ? 'search-form__input-error' : ''}`}
+            className={`search-form__input ${
+              isQueryEmpty && !isSavedFilms && !isShortMovies ? 'search-form__input-error' : ''
+            }`}
             onChange={handleChangeQuery}
+            value={query}
             type="text"
             placeholder={isQueryEmpty && !isShortMovies && !isSavedFilms ? 'Enter keyword' : 'Film'}
             required

@@ -21,7 +21,6 @@ function MoviesCard({ card, isSavedFilms, onSaveFilm, onDeleteFilm, savedMovies,
     }
   }
 
-
   return (
     <section className="movies-card">
       <div className="movies-card__info-wrap">

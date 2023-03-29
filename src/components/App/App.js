@@ -11,7 +11,7 @@ import Register from '../Register/Register';
 import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import NotFound from '../NotFound/NotFound';
 import * as api from '../../utils/MainApi';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
@@ -22,6 +22,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isRequestErr, setIsRequestErr] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [isProfileUpdateSuccess, setIsProfileUpdateSuccess] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -30,16 +31,18 @@ function App() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      api.getUserInfo()
-        .then(data => {
+      api
+        .getUserInfo()
+        .then((data) => {
           setCurrentUser(data);
         })
-        .catch(err => {
+        .catch((err) => {
           console.log(err);
         });
     }
   }, [isLoggedIn]);
 
+  
   function checkToken() {
     const jwt = localStorage.getItem('token');
     if (jwt) {
@@ -109,24 +112,30 @@ function App() {
     api
       .setUserInfo(data)
       .then((data) => {
+        setIsProfileUpdateSuccess(true);
         setCurrentUser(data);
         setIsRequestErr(false);
       })
       .catch((error) => {
+        setIsProfileUpdateSuccess(false);
         setIsRequestErr(true);
         console.log(error);
       })
       .finally(() => {
         setIsLoading(false);
+        console.log(data);
       });
   }
 
   function onLogout() {
     setIsLoggedIn(false);
     localStorage.removeItem('token');
-    localStorage.removeItem('movies');
-    localStorage.removeItem('isShortMovies');
+    localStorage.removeItem('allMovies');
+    localStorage.removeItem('isShort');
+    localStorage.removeItem('isShortSavedMovies');
+    localStorage.removeItem('filtredMovies');
     localStorage.removeItem('query');
+    localStorage.removeItem('querySavedMovies');
     navigate('/');
   }
 
@@ -195,8 +204,13 @@ function App() {
             element={
               <ProtectedRoute path="/profile" loggedIn={isLoggedIn}>
                 <>
-                  <Header isLoggedIn={isLoggedIn}/>
-                  <Profile onSubmit={onProfileUpdate} isRequestErr={isRequestErr} onLogout={onLogout}/>
+                  <Header isLoggedIn={isLoggedIn} />
+                  <Profile
+                    onSubmit={onProfileUpdate}
+                    isRequestErr={isRequestErr}
+                    onLogout={onLogout}
+                    isProfileUpdateSuccess={isProfileUpdateSuccess}
+                  />
                 </>
               </ProtectedRoute>
             }

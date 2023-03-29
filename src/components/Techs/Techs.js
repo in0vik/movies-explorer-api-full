@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import './Techs.scss';
 
 function Techs() {
@@ -7,7 +7,10 @@ function Techs() {
       <h2 className="subtitle techs__title">Technologies</h2>
       <div className="techs__main-block">
         <p className="techs__big-text">7 technologies</p>
-        <p className="techs__text">In the web development course, we learned the techniques that we applied in the diploma project.</p>
+        <p className="techs__text">
+          In the web development course, we learned the techniques that we applied in the diploma
+          project.
+        </p>
         <div className="techs__list">
           <div className="techs__item">
             <p className="techs__item-text">HTML</p>

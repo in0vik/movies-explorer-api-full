@@ -10,6 +10,15 @@ function SavedMovies({ savedMovies, onDeleteFilm }) {
   const [searchQeury, setSearchQeury] = React.useState('');
   const [isNotFound, setIsNotFound] = React.useState(false);
 
+  useEffect(() => { 
+    if (localStorage.getItem('querySavedMovies')) {
+      setSearchQeury(localStorage.getItem('querySavedMovies'));
+    } 
+    if (localStorage.getItem('isShortSavedMovies')) {
+      setIsShortMovies(JSON.parse(localStorage.getItem('isShortSavedMovies')));
+    } 
+  }, [])
+
   useEffect(() => {
     if (filtredMovies.length === 0) {
       setIsNotFound(true);
@@ -28,10 +37,12 @@ function SavedMovies({ savedMovies, onDeleteFilm }) {
 
   function onSearchMovies(query) {
     setSearchQeury(query);
+    localStorage.setItem('querySavedMovies', query);
   }
 
   function onFilterMovies() {
     setIsShortMovies(!isShortMovies);
+    localStorage.setItem('isShortSavedMovies', !isShortMovies);
   }
 
   return (
@@ -41,6 +52,8 @@ function SavedMovies({ savedMovies, onDeleteFilm }) {
         isShortMovies={isShortMovies}
         onFilter={onFilterMovies}
         isSavedFilms={true}
+        query={searchQeury}
+        setQuery={setSearchQeury}
       />
       <MoviesCardList
         cards={filtredMovies}

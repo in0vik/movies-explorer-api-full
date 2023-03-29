@@ -103,16 +103,19 @@
   border: 0;
   margin: 0 0 210px 0;
   padding: 0;
-
 }
 
-.profile__request-error {
+.profile__request-answer {
   min-height: 13px;
   text-align: center;
-  color: #EE3465;
+  
   font-weight: 400;
   font-size: 11px;
   line-height: 13px;
   margin-top: 150px;
   margin-bottom: 16px;
+}
+
+.profile__request-error {
+  color: #EE3465;
 }
