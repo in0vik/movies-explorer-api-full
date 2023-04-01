@@ -1,0 +1,114 @@
+@import "../../styles/variables.scss";
+
+.about-me {
+  padding: 90px 0;
+  @media screen and (max-width: $max-width-mobile) {
+    padding: 70px 0; 
+  }
+}
+
+.about-me__main-block {
+  margin: 66px 0 0 0;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: minmax(200px, 600px) 270px;
+  grid-template-rows: auto;
+  justify-content: space-between;
+
+  @media screen and (max-width: $max-width-tablet) {
+    grid-template-columns: minmax(140px, 600px) 255px;
+  }
+
+  @media screen and (max-width: $max-width-mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.about-me__name {
+  margin: 0;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  grid-column-start: 1;
+  @media screen and (max-width: $max-width-tablet) {
+    font-size: 40px;
+    line-height: 40px;  
+  }
+
+  @media screen and (max-width: $max-width-mobile) {
+    font-size: 30px;
+    line-height: 36px;
+  }
+}
+
+.about-me__job {
+  margin: 0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  grid-column-start: 1;
+
+  @media screen and (max-width: $max-width-tablet) {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  @media screen and (max-width: $max-width-mobile) {
+    font-size: 11px;
+    line-height: 16px;
+    
+  }
+  
+}
+
+.about-me__description {
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  grid-column-start: 1;
+  @media screen and (max-width: $max-width-tablet) {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  @media screen and (max-width: $max-width-mobile) {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+
+.about-me__github {
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  grid-column-start: 1;
+
+  @media screen and (max-width: $max-width-tablet) {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+.about-me__photo {
+  width: 270px;
+  height: 327px;
+  border-radius: 10px;
+  object-fit: cover;
+  grid-column-start: 2;
+  grid-row-start: 1;
+  grid-row-end: 4;
+
+  @media screen and (max-width: $max-width-tablet) {
+    width: 255px;
+    height: 307px;
+  }
+
+  @media screen and (max-width: $max-width-mobile) {
+    grid-template-columns: 1fr;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    width: 100%;
+   margin-bottom: 20px;
+  }
+}
