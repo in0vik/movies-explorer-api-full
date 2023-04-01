@@ -8,7 +8,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
-import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import NotFound from '../NotFound/NotFound';
 import * as api from '../../utils/MainApi';
 import React, { useContext, useEffect, useState } from 'react';
@@ -42,7 +42,6 @@ function App() {
     }
   }, [isLoggedIn]);
 
-  
   function checkToken() {
     const jwt = localStorage.getItem('token');
     if (jwt) {
@@ -215,30 +214,38 @@ function App() {
             }
             exact
           />
-          <Route
-            path="/signin"
-            element={
-              <Login
-                isLoading={isLoading}
-                onAuth={onAuth}
-                isRequestErr={isRequestErr}
-                setIsRequestErr={setIsRequestErr}
-              />
-            }
-            exact
-          />
-          <Route
-            path="/signup"
-            element={
-              <Register
-                isLoading={isLoading}
-                onRegister={onRegister}
-                isRequestErr={isRequestErr}
-                setIsRequestErr={setIsRequestErr}
-              />
-            }
-            exact
-          />
+          {isLoggedIn ? (
+            <Route path="/signin" element={<Navigate to="/" replace />} exact/>
+          ) : (
+            <Route
+              path="/signin"
+              element={
+                <Login
+                  isLoading={isLoading}
+                  onAuth={onAuth}
+                  isRequestErr={isRequestErr}
+                  setIsRequestErr={setIsRequestErr}
+                />
+              }
+              exact
+            />
+          )}
+          {isLoggedIn ? (
+            <Route path="/signup" element={<Navigate to="/" replace />} exact />
+          ) : (
+            <Route
+              path="/signup"
+              element={
+                <Register
+                  isLoading={isLoading}
+                  onRegister={onRegister}
+                  isRequestErr={isRequestErr}
+                  setIsRequestErr={setIsRequestErr}
+                />
+              }
+              exact
+            />
+          )}
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </div>
