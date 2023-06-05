@@ -8,3 +8,7 @@ export const SMALL_SCREEN_MOVIES_ON_PAGE = 5;
 export const MOBILE_MOVIES_ON_PAGE = 8;
 export const TABLET_MOVIES_ON_PAGE = 12;
 export const DESKTOP_MOVIES_ON_PAGE = 15;
+
+export const EMAIL_REGEX = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+
+

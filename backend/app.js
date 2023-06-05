@@ -20,7 +20,7 @@ app.use(helmet());
 
 try {
   mongoose.connect(DATABASE_URL);
-  console.log('connected to mongodb: ' + DATABASE_URL);
+  console.log(`connected to mongodb: ${DATABASE_URL}`);
 } catch (error) {
   console.log(`error connecting to mongodb: ${error}`);
 }

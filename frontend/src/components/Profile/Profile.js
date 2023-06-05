@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { useFormWithValidation } from '../../utils/utils';
 import './Profile.scss';
-import { EMAIL_REGEX } from '../../config/constants';
+import { EMAIL_REGEX } from '../../utils/constants';
 
 function Profile({ isLoading, onLogout, onSubmit, isRequestErr, isProfileUpdateSuccess }) {
   const { values, handleChange, isValid, resetForm } = useFormWithValidation();

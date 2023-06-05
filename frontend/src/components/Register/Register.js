@@ -3,7 +3,7 @@ import './Register.scss';
 import logo from '../../images/logo.svg';
 import { Link } from 'react-router-dom';
 import { useFormWithValidation } from '../../utils/utils';
-import { EMAIL_REGEX } from '../../config/constants';
+import { EMAIL_REGEX } from '../../utils/constants';
 
 function Register({ isLoading, onRegister, isRequestErr, setIsRequestErr }) {
   const { values, handleChange, errors, isValid } = useFormWithValidation();

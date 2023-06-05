@@ -70,12 +70,12 @@
 .login__form-button {
   width: 100%;
   background: #FF6838;
-  border-radius: 3px; 
+  border-radius: 3px;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
   color: #fff;
-  
+
 }
 
 .login__form-button_disabled {
@@ -112,6 +112,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  max-width: 400px;
 }
 
 .login__request-error {
