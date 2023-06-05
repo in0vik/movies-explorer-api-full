@@ -1,0 +1,66 @@
+@import "../../styles/variables.scss";
+
+
+:root {
+  background-color: $color-background;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  font-family: 'Inter', sans-serif;
+  height: 100vh;
+  min-width: 320px;
+  max-width: 1280px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  color: $color-text;
+  text-decoration: none;
+  height: 36px;
+  border-radius: 10px;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  
+}
+
+.button:hover {
+  opacity: .7;
+  cursor: pointer;
+}
+
+.link {
+  color: $color-text;
+  text-decoration: none;
+}
+
+.link:hover {
+  opacity: .7;
+}
+
+.subtitle {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  border-bottom: 1px solid #000;
+  padding-bottom: 23px;
+
+  @media screen and (max-width: $max-width-mobile) {
+    font-size: 18px;
+    line-height: 22px;
+    padding-bottom: 28px;
+  }
+}
