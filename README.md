@@ -16,7 +16,7 @@
 
 Welcome to the Movies explorer project repository, where you can search and save your favorite movies from beatfilmfestival media library! This repository consists of two main folders: ```/frontend``` and ```/backend```, each serving a crucial role in delivering a seamless user experience.
 
-[![img](https://i.postimg.cc/d1z8pGJR/brandbird-9.png)](https://postimg.cc/bdTVjJ2x)
+[![img](https://i.postimg.cc/d1z8pGJR/brandbird-9.png)]()
 
 ⚙️ **Functionality**
 
