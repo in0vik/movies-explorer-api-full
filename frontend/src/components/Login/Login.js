@@ -3,6 +3,7 @@ import './Login.scss';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import { useFormWithValidation } from '../../utils/utils';
+import { EMAIL_REGEX } from '../../config/constants';
 
 function Login({ isLoading, onAuth, isRequestErr, setIsRequestErr }) {
   const { values, handleChange, errors, isValid } = useFormWithValidation();
@@ -33,7 +34,7 @@ function Login({ isLoading, onAuth, isRequestErr, setIsRequestErr }) {
               required
               minLength="4"
               maxLength="320"
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              pattern={EMAIL_REGEX}
               value={values.email || ''}
             />
             <span className="login__input-error">{errors.email}</span>

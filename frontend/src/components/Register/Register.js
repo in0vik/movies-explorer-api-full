@@ -3,6 +3,7 @@ import './Register.scss';
 import logo from '../../images/logo.svg';
 import { Link } from 'react-router-dom';
 import { useFormWithValidation } from '../../utils/utils';
+import { EMAIL_REGEX } from '../../config/constants';
 
 function Register({ isLoading, onRegister, isRequestErr, setIsRequestErr }) {
   const { values, handleChange, errors, isValid } = useFormWithValidation();
@@ -49,7 +50,7 @@ function Register({ isLoading, onRegister, isRequestErr, setIsRequestErr }) {
               required
               minLength="4"
               maxLength="320"
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              pattern={EMAIL_REGEX}
               value={values.email || ''}
             />
             <span className="register__input-error">{errors.email}</span>

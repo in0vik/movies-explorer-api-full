@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import { useFormWithValidation } from '../../utils/utils';
 import './Profile.scss';
+import { EMAIL_REGEX } from '../../config/constants';
 
 function Profile({ isLoading, onLogout, onSubmit, isRequestErr, isProfileUpdateSuccess }) {
   const { values, handleChange, isValid, resetForm } = useFormWithValidation();
@@ -64,7 +65,7 @@ function Profile({ isLoading, onLogout, onSubmit, isRequestErr, isProfileUpdateS
               required
               minLength="4"
               maxLength="320"
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              pattern={EMAIL_REGEX}
               value={values.email || ''}></input>
           </div>
         </fieldset>
