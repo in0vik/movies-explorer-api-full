@@ -9,6 +9,11 @@ const { moviesRoutes } = require('./movies');
 const auth = require('../middlewares/auth');
 const NotFoundError = require('../errors/NotFoundError');
 const { statusCodes } = require('../config/constants');
+const { baseSubfolderUrl } = require('../config/config');
+
+const baseRouter = express.Router();
+baseRouter.use('/', routes);
+routes.use(baseSubfolderUrl, baseRouter);
 
 routes.use('/signin', signinRoutes);
 routes.use('/signup', createUserRoutes);

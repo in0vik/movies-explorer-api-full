@@ -1,6 +1,6 @@
-const NODE_ENV = 'development';
-const API_URL = 'http://localhost:3000';
-const MOVIES_API_URL = 'https://api.nomoreparties.co/beatfilm-movies';
+const NODE_ENV = "development";
+const API_URL = "https://movies-explorer-app.vercel.app/api";
+const MOVIES_API_URL = "https://api.nomoreparties.co/beatfilm-movies";
 
 module.exports = {
   API_URL,

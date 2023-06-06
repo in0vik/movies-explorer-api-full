@@ -4,21 +4,21 @@
   "description": "Movies Explorer App API",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npx eslint .",
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "vercel-build": "npm i"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/in0vik/movies-explorer-api.git"
+    "url": "git+https://github.com/in0vik/movies-explorer-api-full"
   },
   "author": "Ilya Novik",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/in0vik/movies-explorer-api/issues"
+    "url": "https://github.com/in0vik/movies-explorer-api-full/issues"
   },
-  "homepage": "https://github.com/in0vik/movies-explorer-api#readme",
+  "homepage": "https://github.com/in0vik/movies-explorer-api-full#readme",
   "devDependencies": {
     "eslint": "^8.33.0",
     "eslint-config-airbnb-base": "^15.0.0",
