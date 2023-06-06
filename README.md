@@ -47,7 +47,7 @@ Welcome to the Movies explorer project repository, where you can search and save
 
 ## 🚀 How to run locally
 
-1. Clone repo ``git clone https://github.com/in0vik/react-mesto-api-full.git``
+1. Clone repo ``git clone https://github.com/in0vik/movies-explorer-api-full``
 2. Installing backend
    - Installing dependences for bacckend part.
    ``cd movies-explorer-api-full/backend && npm i``
@@ -59,9 +59,9 @@ Welcome to the Movies explorer project repository, where you can search and save
 
 🔗 **Deploy**
 
-The Mesto project is deployed using Docker and the powerful Fly.io platform.
+The Movies Explorer project is deployed the powerful [Vercel](https://vercel.com) platform.
 
-- Frontend: Access the deployed frontend application at [movies.fly.dev](https://movies.fly.dev).
-- Backend: Interact with the backend API at [movies-api.fly.dev](https://movies-api.fly.dev).
+- Frontend: Access the deployed frontend application at [movies-explorer-app.vercel.app](https://movies-explorer-app.vercel.app).
+- Backend: Interact with the backend API at [movies-explorer-app.vercel.app/api](https://movies-explorer-app.vercel.app/api/).
 
-Enjoy exploring and sharing your travel memories with Mesto! 🌍✨
+Enjoy exploring movies with Movie Explorer! 🎞️✨
